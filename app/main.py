@@ -1,6 +1,3 @@
-"""
-The REST API. Each @app.post(...) below is one URL (an "endpoint").
-"""
 import os
 import tempfile
 import time
@@ -19,8 +16,7 @@ class Question(BaseModel):
 
 @app.post("/upload")
 def upload(file: UploadFile = File(...)):
-    """Send a PDF or TXT file. It is chunked, embedded and stored."""
-    # save the upload to a temporary file so the loader can read it
+  
     suffix = os.path.splitext(file.filename)[1]
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
         tmp.write(file.file.read())
